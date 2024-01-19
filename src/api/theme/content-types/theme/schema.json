@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "themes",
+  "info": {
+    "singularName": "theme",
+    "pluralName": "themes",
+    "displayName": "Theme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "themeDesc": {
+      "type": "text"
+    },
+    "websites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::website.website",
+      "mappedBy": "theme"
+    }
+  }
+}
