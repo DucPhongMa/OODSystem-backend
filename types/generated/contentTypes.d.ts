@@ -964,6 +964,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       'oneToOne',
       'api::menu.menu'
     >;
+    route: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
