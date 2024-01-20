@@ -35,6 +35,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::menu.menu"
+    },
+    "route": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }
