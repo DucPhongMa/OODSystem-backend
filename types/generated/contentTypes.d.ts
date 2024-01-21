@@ -943,7 +943,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
     restaurant_contact: Attribute.Relation<
       'api::restaurant.restaurant',
       'oneToOne',
