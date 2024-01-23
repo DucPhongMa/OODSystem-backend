@@ -804,6 +804,7 @@ export interface ApiMenuMenu extends Schema.CollectionType {
     singularName: 'menu';
     pluralName: 'menus';
     displayName: 'Menu';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -813,6 +814,11 @@ export interface ApiMenuMenu extends Schema.CollectionType {
       'api::menu.menu',
       'oneToMany',
       'api::menu-item.menu-item'
+    >;
+    menu_categories: Attribute.Relation<
+      'api::menu.menu',
+      'oneToMany',
+      'api::menu-category.menu-category'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -943,28 +949,17 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String & Attribute.Required;
-    restaurant_contact: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::restaurant-contact.restaurant-contact'
-    >;
-    restaurant_description: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::restaurant-description.restaurant-description'
-    >;
-    website: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::website.website'
-    >;
+    name: Attribute.String & Attribute.Required;
     menu: Attribute.Relation<
       'api::restaurant.restaurant',
       'oneToOne',
       'api::menu.menu'
     >;
     route: Attribute.String & Attribute.Required & Attribute.Unique;
+    restaurant_contact: Attribute.JSON;
+    restaurant_description: Attribute.JSON;
+    theme: Attribute.JSON;
+    hours: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -976,144 +971,6 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::restaurant.restaurant',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRestaurantContactRestaurantContact
-  extends Schema.CollectionType {
-  collectionName: 'restaurant_contacts';
-  info: {
-    singularName: 'restaurant-contact';
-    pluralName: 'restaurant-contacts';
-    displayName: 'RestaurantContact';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    phone: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    provinceOrState: Attribute.String & Attribute.Required;
-    city: Attribute.String & Attribute.Required;
-    postalCode: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::restaurant-contact.restaurant-contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::restaurant-contact.restaurant-contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRestaurantDescriptionRestaurantDescription
-  extends Schema.CollectionType {
-  collectionName: 'restaurant_descriptions';
-  info: {
-    singularName: 'restaurant-description';
-    pluralName: 'restaurant-descriptions';
-    displayName: 'RestaurantDescription';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    aboutDescription: Attribute.Text;
-    bannerURL: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::restaurant-description.restaurant-description',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::restaurant-description.restaurant-description',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiThemeTheme extends Schema.CollectionType {
-  collectionName: 'themes';
-  info: {
-    singularName: 'theme';
-    pluralName: 'themes';
-    displayName: 'Theme';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    themeDesc: Attribute.Text;
-    websites: Attribute.Relation<
-      'api::theme.theme',
-      'oneToMany',
-      'api::website.website'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::theme.theme',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::theme.theme',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiWebsiteWebsite extends Schema.CollectionType {
-  collectionName: 'websites';
-  info: {
-    singularName: 'website';
-    pluralName: 'websites';
-    displayName: 'Website';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    websiteURL: Attribute.String;
-    theme: Attribute.Relation<
-      'api::website.website',
-      'manyToOne',
-      'api::theme.theme'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::website.website',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::website.website',
       'oneToOne',
       'admin::user'
     > &
@@ -1145,10 +1002,6 @@ declare module '@strapi/types' {
       'api::menu-item.menu-item': ApiMenuItemMenuItem;
       'api::order.order': ApiOrderOrder;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
-      'api::restaurant-contact.restaurant-contact': ApiRestaurantContactRestaurantContact;
-      'api::restaurant-description.restaurant-description': ApiRestaurantDescriptionRestaurantDescription;
-      'api::theme.theme': ApiThemeTheme;
-      'api::website.website': ApiWebsiteWebsite;
     }
   }
 }

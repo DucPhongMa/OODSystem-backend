@@ -12,24 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
-    },
-    "restaurant_contact": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::restaurant-contact.restaurant-contact"
-    },
-    "restaurant_description": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::restaurant-description.restaurant-description"
-    },
-    "website": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::website.website"
     },
     "menu": {
       "type": "relation",
@@ -40,6 +25,18 @@
       "type": "string",
       "unique": true,
       "required": true
+    },
+    "restaurant_contact": {
+      "type": "json"
+    },
+    "restaurant_description": {
+      "type": "json"
+    },
+    "theme": {
+      "type": "json"
+    },
+    "hours": {
+      "type": "json"
     }
   }
 }
