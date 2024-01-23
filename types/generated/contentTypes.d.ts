@@ -19,15 +19,15 @@ export interface AdminPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     actionParameters: Attribute.JSON & Attribute.DefaultTo<{}>;
     subject: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     properties: Attribute.JSON & Attribute.DefaultTo<{}>;
     conditions: Attribute.JSON & Attribute.DefaultTo<[]>;
     role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
@@ -38,13 +38,13 @@ export interface AdminPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::permission',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -67,41 +67,41 @@ export interface AdminUser extends Schema.CollectionType {
   };
   attributes: {
     firstname: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     lastname: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     username: Attribute.String;
     email: Attribute.Email &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
+    Attribute.Required &
+    Attribute.Private &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 6;
+    }>;
     password: Attribute.Password &
-      Attribute.Private &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
+    Attribute.Private &
+    Attribute.SetMinMaxLength<{
+      minLength: 6;
+    }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     registrationToken: Attribute.String & Attribute.Private;
     isActive: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
+    Attribute.Private &
+    Attribute.DefaultTo<false>;
     roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-      Attribute.Private;
+    Attribute.Private;
     blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     preferedLanguage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -124,17 +124,17 @@ export interface AdminRole extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     code: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     description: Attribute.String;
     users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
     permissions: Attribute.Relation<
@@ -145,9 +145,9 @@ export interface AdminRole extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -170,24 +170,24 @@ export interface AdminApiToken extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     description: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }> &
-      Attribute.DefaultTo<''>;
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }> &
+    Attribute.DefaultTo<''>;
     type: Attribute.Enumeration<['read-only', 'full-access', 'custom']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'read-only'>;
+    Attribute.Required &
+    Attribute.DefaultTo<'read-only'>;
     accessKey: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     lastUsedAt: Attribute.DateTime;
     permissions: Attribute.Relation<
       'admin::api-token',
@@ -203,13 +203,13 @@ export interface AdminApiToken extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::api-token',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -232,10 +232,10 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     token: Attribute.Relation<
       'admin::api-token-permission',
       'manyToOne',
@@ -248,13 +248,13 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::api-token-permission',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -277,21 +277,21 @@ export interface AdminTransferToken extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     description: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }> &
-      Attribute.DefaultTo<''>;
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }> &
+    Attribute.DefaultTo<''>;
     accessKey: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     lastUsedAt: Attribute.DateTime;
     permissions: Attribute.Relation<
       'admin::transfer-token',
@@ -307,13 +307,13 @@ export interface AdminTransferToken extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::transfer-token',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -336,10 +336,10 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
     token: Attribute.Relation<
       'admin::transfer-token-permission',
       'manyToOne',
@@ -352,13 +352,13 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::transfer-token-permission',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -399,13 +399,13 @@ export interface PluginUploadFile extends Schema.CollectionType {
       'manyToOne',
       'plugin::upload.folder'
     > &
-      Attribute.Private;
+    Attribute.Private;
     folderPath: Attribute.String &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+    Attribute.Required &
+    Attribute.Private &
+    Attribute.SetMinMax<{
+      min: 1;
+    }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -413,13 +413,13 @@ export interface PluginUploadFile extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.file',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -440,10 +440,10 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMax<{
+      min: 1;
+    }>;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     parent: Attribute.Relation<
       'plugin::upload.folder',
@@ -461,10 +461,10 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'plugin::upload.file'
     >;
     path: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMax<{
+      min: 1;
+    }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -472,13 +472,13 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.folder',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -515,13 +515,13 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::content-releases.release',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -563,13 +563,13 @@ export interface PluginContentReleasesReleaseAction
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::content-releases.release-action',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -595,10 +595,10 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
+    Attribute.SetMinMax<{
+      min: 1;
+      max: 50;
+    }>;
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -607,13 +607,13 @@ export interface PluginI18NLocale extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -649,13 +649,13 @@ export interface PluginUsersPermissionsPermission
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.permission',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -678,10 +678,10 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 3;
+    }>;
     description: Attribute.String;
     type: Attribute.String & Attribute.Unique;
     permissions: Attribute.Relation<
@@ -701,13 +701,13 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.role',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -726,22 +726,22 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   attributes: {
     username: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
+    Attribute.Required &
+    Attribute.Unique &
+    Attribute.SetMinMaxLength<{
+      minLength: 3;
+    }>;
     email: Attribute.Email &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 6;
+    }>;
     provider: Attribute.String;
     password: Attribute.Password &
-      Attribute.Private &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
+    Attribute.Private &
+    Attribute.SetMinMaxLength<{
+      minLength: 6;
+    }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -758,13 +758,13 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -788,13 +788,13 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::customer.customer',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -804,6 +804,7 @@ export interface ApiMenuMenu extends Schema.CollectionType {
     singularName: 'menu';
     pluralName: 'menus';
     displayName: 'Menu';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -814,13 +815,18 @@ export interface ApiMenuMenu extends Schema.CollectionType {
       'oneToMany',
       'api::menu-item.menu-item'
     >;
+    menu_categories: Attribute.Relation<
+      'api::menu.menu',
+      'oneToMany',
+      'api::menu-category.menu-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -849,13 +855,13 @@ export interface ApiMenuCategoryMenuCategory extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::menu-category.menu-category',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -888,13 +894,13 @@ export interface ApiMenuItemMenuItem extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::menu-item.menu-item',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -921,13 +927,13 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -944,27 +950,16 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    restaurant_contact: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::restaurant-contact.restaurant-contact'
-    >;
-    restaurant_description: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::restaurant-description.restaurant-description'
-    >;
-    website: Attribute.Relation<
-      'api::restaurant.restaurant',
-      'oneToOne',
-      'api::website.website'
-    >;
     menu: Attribute.Relation<
       'api::restaurant.restaurant',
       'oneToOne',
       'api::menu.menu'
     >;
     route: Attribute.String & Attribute.Required & Attribute.Unique;
+    restaurant_contact: Attribute.JSON;
+    restaurant_description: Attribute.JSON;
+    theme: Attribute.JSON;
+    hours: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -973,151 +968,13 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
+    Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::restaurant.restaurant',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRestaurantContactRestaurantContact
-  extends Schema.CollectionType {
-  collectionName: 'restaurant_contacts';
-  info: {
-    singularName: 'restaurant-contact';
-    pluralName: 'restaurant-contacts';
-    displayName: 'RestaurantContact';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    phone: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    provinceOrState: Attribute.String & Attribute.Required;
-    city: Attribute.String & Attribute.Required;
-    postalCode: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::restaurant-contact.restaurant-contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::restaurant-contact.restaurant-contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRestaurantDescriptionRestaurantDescription
-  extends Schema.CollectionType {
-  collectionName: 'restaurant_descriptions';
-  info: {
-    singularName: 'restaurant-description';
-    pluralName: 'restaurant-descriptions';
-    displayName: 'RestaurantDescription';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    aboutDescription: Attribute.Text;
-    bannerURL: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::restaurant-description.restaurant-description',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::restaurant-description.restaurant-description',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiThemeTheme extends Schema.CollectionType {
-  collectionName: 'themes';
-  info: {
-    singularName: 'theme';
-    pluralName: 'themes';
-    displayName: 'Theme';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    themeDesc: Attribute.Text;
-    websites: Attribute.Relation<
-      'api::theme.theme',
-      'oneToMany',
-      'api::website.website'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::theme.theme',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::theme.theme',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiWebsiteWebsite extends Schema.CollectionType {
-  collectionName: 'websites';
-  info: {
-    singularName: 'website';
-    pluralName: 'websites';
-    displayName: 'Website';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    websiteURL: Attribute.String;
-    theme: Attribute.Relation<
-      'api::website.website',
-      'manyToOne',
-      'api::theme.theme'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::website.website',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::website.website',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
+    Attribute.Private;
   };
 }
 
@@ -1145,10 +1002,6 @@ declare module '@strapi/types' {
       'api::menu-item.menu-item': ApiMenuItemMenuItem;
       'api::order.order': ApiOrderOrder;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
-      'api::restaurant-contact.restaurant-contact': ApiRestaurantContactRestaurantContact;
-      'api::restaurant-description.restaurant-description': ApiRestaurantDescriptionRestaurantDescription;
-      'api::theme.theme': ApiThemeTheme;
-      'api::website.website': ApiWebsiteWebsite;
     }
   }
 }
