@@ -37,6 +37,9 @@
     },
     "hours": {
       "type": "json"
+    },
+    "restaurant_owner": {
+      "type": "string"
     }
   }
 }

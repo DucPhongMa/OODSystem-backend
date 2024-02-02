@@ -960,6 +960,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     restaurant_description: Attribute.JSON;
     theme: Attribute.JSON;
     hours: Attribute.JSON;
+    restaurant_owner: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
