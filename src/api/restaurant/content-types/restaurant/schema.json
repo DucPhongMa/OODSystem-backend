@@ -39,7 +39,8 @@
       "type": "json"
     },
     "restaurant_owner": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
