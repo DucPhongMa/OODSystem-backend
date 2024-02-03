@@ -774,12 +774,22 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     singularName: 'customer';
     pluralName: 'customers';
     displayName: 'Customer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    first_name: Attribute.String & Attribute.Required;
+    last_name: Attribute.String & Attribute.Required;
+    phone_number: Attribute.String;
+    email: Attribute.Email & Attribute.Required;
+    orders: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::order.order'
+    >;
+    password: Attribute.Password;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -916,9 +926,25 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    customerName: Attribute.String;
+    date_time: Attribute.DateTime;
+    note: Attribute.Text;
+    tax: Attribute.Decimal & Attribute.DefaultTo<0.13>;
     total: Attribute.Decimal;
-    customerID: Attribute.UID;
+    order_details: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::order-detail.order-detail'
+    >;
+    customer: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    restaurant: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::restaurant.restaurant'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -930,6 +956,47 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderDetailOrderDetail extends Schema.CollectionType {
+  collectionName: 'order_details';
+  info: {
+    singularName: 'order-detail';
+    pluralName: 'order-details';
+    displayName: 'OrderDetail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    quantity: Attribute.Integer;
+    total_price: Attribute.Decimal;
+    menu_item: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'oneToOne',
+      'api::menu-item.menu-item'
+    >;
+    order: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'manyToOne',
+      'api::order.order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-detail.order-detail',
       'oneToOne',
       'admin::user'
     > &
@@ -961,6 +1028,11 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     theme: Attribute.JSON;
     hours: Attribute.JSON;
     restaurant_owner: Attribute.String & Attribute.Required;
+    orders: Attribute.Relation<
+      'api::restaurant.restaurant',
+      'oneToMany',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1002,6 +1074,7 @@ declare module '@strapi/types' {
       'api::menu-category.menu-category': ApiMenuCategoryMenuCategory;
       'api::menu-item.menu-item': ApiMenuItemMenuItem;
       'api::order.order': ApiOrderOrder;
+      'api::order-detail.order-detail': ApiOrderDetailOrderDetail;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
     }
   }
