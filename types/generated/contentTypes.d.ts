@@ -895,7 +895,7 @@ export interface ApiMenuItemMenuItem extends Schema.CollectionType {
       'manyToOne',
       'api::menu-category.menu-category'
     >;
-    imageURL: Attribute.Media;
+    imageURL: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
