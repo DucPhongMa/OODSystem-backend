@@ -1028,7 +1028,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     restaurant_description: Attribute.JSON;
     theme: Attribute.JSON;
     hours: Attribute.JSON;
-    restaurant_owner: Attribute.String & Attribute.Required;
+    restaurant_owner: Attribute.String & Attribute.Required & Attribute.Unique;
     orders: Attribute.Relation<
       'api::restaurant.restaurant',
       'oneToMany',
