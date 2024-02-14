@@ -48,6 +48,9 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "restaurant"
+    },
+    "bannerURL": {
+      "type": "string"
     }
   }
 }

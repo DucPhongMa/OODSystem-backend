@@ -1034,6 +1034,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
+    bannerURL: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
