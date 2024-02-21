@@ -752,56 +752,21 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     fullname: Attribute.String;
     phonenumber: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCustomerCustomer extends Schema.CollectionType {
-  collectionName: 'customers';
-  info: {
-    singularName: 'customer';
-    pluralName: 'customers';
-    displayName: 'Customer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    first_name: Attribute.String & Attribute.Required;
-    last_name: Attribute.String & Attribute.Required;
-    phone_number: Attribute.String;
-    email: Attribute.Email & Attribute.Required;
     orders: Attribute.Relation<
-      'api::customer.customer',
+      'plugin::users-permissions.user',
       'oneToMany',
       'api::order.order'
     >;
-    password: Attribute.Password;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::customer.customer',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::customer.customer',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
@@ -930,22 +895,23 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     date_time: Attribute.DateTime;
     note: Attribute.Text;
     tax: Attribute.Decimal & Attribute.DefaultTo<0.13>;
-    total: Attribute.Decimal;
+    total_price: Attribute.Decimal;
     order_details: Attribute.Relation<
       'api::order.order',
       'oneToMany',
       'api::order-detail.order-detail'
-    >;
-    customer: Attribute.Relation<
-      'api::order.order',
-      'manyToOne',
-      'api::customer.customer'
     >;
     restaurant: Attribute.Relation<
       'api::order.order',
       'manyToOne',
       'api::restaurant.restaurant'
     >;
+    users_permissions_user: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    status: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -970,13 +936,14 @@ export interface ApiOrderDetailOrderDetail extends Schema.CollectionType {
     singularName: 'order-detail';
     pluralName: 'order-details';
     displayName: 'OrderDetail';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     quantity: Attribute.Integer;
-    total_price: Attribute.Decimal;
+    unit_price: Attribute.Decimal;
     menu_item: Attribute.Relation<
       'api::order-detail.order-detail',
       'oneToOne',
@@ -1071,7 +1038,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::customer.customer': ApiCustomerCustomer;
       'api::menu.menu': ApiMenuMenu;
       'api::menu-category.menu-category': ApiMenuCategoryMenuCategory;
       'api::menu-item.menu-item': ApiMenuItemMenuItem;

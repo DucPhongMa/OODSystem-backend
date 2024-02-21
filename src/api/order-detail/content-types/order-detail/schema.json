@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order-detail",
     "pluralName": "order-details",
-    "displayName": "OrderDetail"
+    "displayName": "OrderDetail",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,7 @@
       "type": "integer",
       "required": false
     },
-    "total_price": {
+    "unit_price": {
       "type": "decimal"
     },
     "menu_item": {
