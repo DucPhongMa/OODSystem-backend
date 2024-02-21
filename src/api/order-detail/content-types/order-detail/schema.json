@@ -23,12 +23,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::menu-item.menu-item"
-    },
-    "order": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::order.order",
-      "inversedBy": "order_details"
     }
   }
 }

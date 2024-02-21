@@ -949,11 +949,6 @@ export interface ApiOrderDetailOrderDetail extends Schema.CollectionType {
       'oneToOne',
       'api::menu-item.menu-item'
     >;
-    order: Attribute.Relation<
-      'api::order-detail.order-detail',
-      'manyToOne',
-      'api::order.order'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
