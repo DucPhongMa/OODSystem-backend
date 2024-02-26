@@ -892,7 +892,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    date_time: Attribute.DateTime;
+    time_placed: Attribute.DateTime;
     note: Attribute.Text;
     tax: Attribute.Decimal & Attribute.DefaultTo<0.13>;
     total_price: Attribute.Decimal;
@@ -912,6 +912,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     status: Attribute.String;
+    time_completed: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

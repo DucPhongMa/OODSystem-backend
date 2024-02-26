@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "date_time": {
+    "time_placed": {
       "type": "datetime"
     },
     "note": {
@@ -44,6 +44,9 @@
     },
     "status": {
       "type": "string"
+    },
+    "time_completed": {
+      "type": "datetime"
     }
   }
 }
