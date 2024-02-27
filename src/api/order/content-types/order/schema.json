@@ -47,6 +47,16 @@
     },
     "time_completed": {
       "type": "datetime"
+    },
+    "matchID": {
+      "type": "uid",
+      "required": true
+    },
+    "username": {
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "string"
     }
   }
 }
