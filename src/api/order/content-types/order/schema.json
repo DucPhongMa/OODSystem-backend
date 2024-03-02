@@ -57,6 +57,9 @@
     },
     "phone_number": {
       "type": "string"
+    },
+    "time_estimated": {
+      "type": "datetime"
     }
   }
 }

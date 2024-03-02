@@ -916,6 +916,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     matchID: Attribute.UID & Attribute.Required;
     username: Attribute.String;
     phone_number: Attribute.String;
+    time_estimated: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
