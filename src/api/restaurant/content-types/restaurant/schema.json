@@ -51,6 +51,9 @@
     },
     "bannerURL": {
       "type": "string"
+    },
+    "logoURL": {
+      "type": "string"
     }
   }
 }

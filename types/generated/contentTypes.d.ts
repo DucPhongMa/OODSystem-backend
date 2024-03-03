@@ -1002,6 +1002,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       'api::order.order'
     >;
     bannerURL: Attribute.String;
+    logoURL: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
