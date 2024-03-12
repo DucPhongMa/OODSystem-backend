@@ -862,6 +862,16 @@ export interface ApiMenuItemMenuItem extends Schema.CollectionType {
       'api::menu-category.menu-category'
     >;
     imageURL: Attribute.String;
+    discount: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    counter: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1003,6 +1013,11 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
     >;
     bannerURL: Attribute.String;
     logoURL: Attribute.String;
+    reviews: Attribute.Relation<
+      'api::restaurant.restaurant',
+      'oneToMany',
+      'api::review.review'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1014,6 +1029,48 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::restaurant.restaurant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    reviewContent: Attribute.Text;
+    customerName: Attribute.String;
+    rating: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+        max: 5;
+      }> &
+      Attribute.DefaultTo<0>;
+    restaurant: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::restaurant.restaurant'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
       'oneToOne',
       'admin::user'
     > &
@@ -1045,6 +1102,7 @@ declare module '@strapi/types' {
       'api::order.order': ApiOrderOrder;
       'api::order-detail.order-detail': ApiOrderDetailOrderDetail;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
+      'api::review.review': ApiReviewReview;
     }
   }
 }
