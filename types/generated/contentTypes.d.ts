@@ -1018,6 +1018,7 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       'oneToMany',
       'api::review.review'
     >;
+    status: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1042,6 +1043,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
     singularName: 'review';
     pluralName: 'reviews';
     displayName: 'Review';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1049,7 +1051,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
   attributes: {
     reviewContent: Attribute.Text;
     customerName: Attribute.String;
-    rating: Attribute.Integer &
+    rating: Attribute.Decimal &
       Attribute.SetMinMax<{
         min: 0;
         max: 5;

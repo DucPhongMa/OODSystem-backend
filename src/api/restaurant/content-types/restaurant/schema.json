@@ -60,6 +60,9 @@
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "restaurant"
+    },
+    "status": {
+      "type": "string"
     }
   }
 }
